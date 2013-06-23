@@ -20,9 +20,6 @@
   "bugs": {
     "url": "https://github.com/wyuenho/backgrid-moment-cell/issues"
   },
-  "dependencies": {
-    "backgrid": "~0.3.1"
-  },
   "devDependencies": {
     "grunt-contrib-clean": "~0.4.1",
     "grunt-contrib-concat": "~0.3.0",
