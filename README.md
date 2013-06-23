@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/wyuenho/backgrid-moment-cell.png?branch=master)](https://travis-ci.org/wyuenho/backgrid-moment-cell)
+
 Dependencies
 ============
 
