@@ -9,7 +9,8 @@
 
   // CommonJS
   if (typeof exports == "object") {
-    module.exports = factory(require("underscore"), require("backgrid"), require("moment"));
+    module.exports = factory(require("underscore"), require("backgrid"),
+                             require("moment"));
   }
   // Browser
   else if (typeof _ !== "undefined" &&
