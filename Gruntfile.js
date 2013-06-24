@@ -1,6 +1,6 @@
 /*
-  backgrid
-  http://github.com/wyuenho/backgrid
+  backgrid-moment-cell
+  http://github.com/wyuenho/backgrid-moment-cell
 
   Copyright (c) 2013 Jimmy Yuen Ho Wong and contributors
   Licensed under the MIT license.
