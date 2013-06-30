@@ -13,12 +13,14 @@
   "eqnull": true,
   "-W018": true,
 
+  "node": true,
   "browser": true,
   "devel": true,
   "jquery": true,
   "nonstandard": true,
 
   "globals": {
+    "moment": false,
     "Backgrid": false,
     "Backbone": false,
     "_": false

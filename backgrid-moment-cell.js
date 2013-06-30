@@ -5,7 +5,20 @@
   Copyright (c) 2013 Jimmy Yuen Ho Wong and contributors
   Licensed under the MIT @license.
 */
-(function ($, _, Backbone, Backgrid, moment) {
+(function (factory) {
+
+  // CommonJS
+  if (typeof exports == "object") {
+    module.exports = factory(require("underscore"), require("backgrid"), require("moment"));
+  }
+  // Browser
+  else if (typeof _ !== "undefined" &&
+           typeof Backgrid !== "undefined" &&
+           typeof moment !== "undefined") {
+    factory(_, Backgrid, moment);
+  }
+
+}(function (_, Backgrid, moment) {
 
   /**
      MomentFormatter converts bi-directionally any datetime values in any format
@@ -172,4 +185,4 @@
 
   _.extend(MomentCell.prototype, MomentFormatter.prototype.defaults);
 
-}(jQuery, _, Backbone, Backgrid, moment));
+}));
