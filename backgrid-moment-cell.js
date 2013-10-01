@@ -166,14 +166,14 @@
      */
     initialize: function (options) {
 
-      Backgrid.Cell.prototype.initialize.apply(this, arguments);
+      MomentCell.__super__.initialize.apply(this, arguments);
 
       var formatterDefaults = MomentFormatter.prototype.defaults;
       var formatterDefaultKeys = _.keys(formatterDefaults);
-      var classAttrs = _.pick(this, formatterDefaultKeys);
+      var instanceAttrs = _.pick(this, formatterDefaultKeys);
       var formatterOptions = _.pick(options, formatterDefaultKeys);
 
-      this.formatter = new this.formatter(_.extend({}, formatterDefaults, classAttrs, formatterOptions));
+      _.extend(this.formatter, formatterDefaults, instanceAttrs, formatterOptions);
 
       this.editor = this.editor.extend({
         attributes: _.extend({}, this.editor.prototype.attributes || this.editor.attributes || {}, {
