@@ -94,7 +94,7 @@
        @return {string}
      */
     fromRaw: function (rawData) {
-      if (rawData == null) return '';
+      if (rawData == null || rawData == '') return '';
 
       var m = this.modelInUnixOffset ? moment(rawData) :
         this.modelInUnixTimestamp ? moment.unix(rawData) :
