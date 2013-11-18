@@ -12,7 +12,8 @@
   },
   "keywords": [
     "backbone",
-    "backgrid"
+    "backgrid",
+    "moment"
   ],
   "author": "Jimmy Yuen Ho Wong <wyuenho@gmail.com>",
   "license": "MIT",
