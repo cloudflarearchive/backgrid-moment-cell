@@ -32,10 +32,7 @@ module.exports = function (grunt) {
       test: {
         version: "1.3.1",
         src: [
-          "backgrid-moment-cell.js",
-          // Language files need to be loaded after the extension
-          "test/vendor/js/moment/lang/zh-tw.js",
-          "test/vendor/js/moment/lang/fr.js"
+          "backgrid-moment-cell.js"
         ],
         options: {
           specs: [
@@ -56,7 +53,7 @@ module.exports = function (grunt) {
             "test/vendor/js/underscore.js",
             "test/vendor/js/backbone.js",
             "test/vendor/js/backgrid.js",
-            "test/vendor/js/moment/moment.js"
+            "test/vendor/js/moment-with-langs.js"
           ]
         }
       }
