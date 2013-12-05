@@ -100,7 +100,7 @@
         this.modelInUnixTimestamp ? moment.unix(rawData) :
         this.modelInUTC ?
         moment.utc(rawData, this.modelFormat, this.modelLang) :
-        moment(rawData, this.modelFormat, this.modelLang);
+        moment(rawData, this.modelFormat, this.modelLang).zone(rawData);
 
       if (this.displayInUnixOffset) return +m;
 
@@ -126,7 +126,7 @@
         this.displayInUnixTimestamp ? moment.unix(+formattedData) :
         this.displayInUTC ?
         moment.utc(formattedData, this.displayFormat, this.displayLang) :
-        moment(formattedData, this.displayFormat, this.displayLang);
+        moment(formattedData, this.displayFormat, this.displayLang).zone(formattedData);
 
       if (!m || !m.isValid()) return;
 

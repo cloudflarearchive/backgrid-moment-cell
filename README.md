@@ -6,7 +6,7 @@ backbone-moment-cell
 Dependencies
 ============
 
-[Moment.js](http://momentjs.com/)
+[Moment.js >= 2.1.0](http://momentjs.com/)
 
 Usage
 ====
