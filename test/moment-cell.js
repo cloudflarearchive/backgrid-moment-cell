@@ -175,7 +175,7 @@ describe("A MomentFormatter", function () {
       displayLang: "zh-tw",
       displayFormat: "ddd, DD-MMM-YYYY HH:mm:ss Z"
     });
-    expect(formatter.toRaw("週三, 29-2月-2012 05:30:00 +08:00")).toBe(moment("2012-02-29T05:30:00").lang("fr").format("dddd, YYYY-MMM-DD HH:mm:ss ZZ"));
+    expect(formatter.toRaw("週三, 29-2月-2012 05:30:00 +08:00")).toBe(moment("2012-02-29T05:30:00+08:00").lang("fr").format("dddd, YYYY-MMM-DD HH:mm:ss ZZ"));
   });
 
   it(".toRaw() returns undefined when converting an empty string or a string of whitespaces", function () {
