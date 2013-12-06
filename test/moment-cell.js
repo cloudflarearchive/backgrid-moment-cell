@@ -94,7 +94,7 @@ describe("A MomentFormatter", function () {
       displayLang: "fr",
       displayFormat: "dddd, YYYY-MMM-DD HH:mm:ss ZZ"
     });
-    expect(formatter.fromRaw("週三, 29-2月-2012 05:30:00 +0800")).toBe("mercredi, 2012-févr.-29 05:30:00 +0800");
+    expect(formatter.fromRaw("週三, 29-2月-2012 05:30:00 +0800")).toBe(moment("2012-02-29T05:30:00+08:00").lang("fr").local().format("dddd, YYYY-MMM-DD HH:mm:ss ZZ"));
   });
 
   it(".fromRaw() returns an empty string for a null value", function () {
@@ -128,7 +128,7 @@ describe("A MomentFormatter", function () {
     expect(formatter.toRaw("Wed, 29-Feb-2012 05:30:00")).toBe("2012-02-29T05:30:00+00:00");
   });
 
-  it(".toRaw() can convert a non-ISO datetime string in UTC in a different locale to the ISO datetime string in UTC in a default locale", function () {
+  it(".toRaw() can convert a non-ISO datetime string in UTC in a different locale to the ISO datetime string in UTC in the default locale", function () {
     var formatter = new Backgrid.Extension.MomentFormatter({
       displayLang: "zh-tw",
       displayFormat: "ddd, DD-MMM-YYYY HH:mm:ss"
@@ -136,7 +136,7 @@ describe("A MomentFormatter", function () {
     expect(formatter.toRaw("週三, 29-2月-2012 05:30:00")).toBe("2012-02-29T05:30:00+00:00");
   });
 
-  it(".toRaw() can convert a non-ISO datetime string in a timezone offset in a different locale to the ISO datetime string in UTC in a default locale", function () {
+  it(".toRaw() can convert a non-ISO datetime string in a timezone offset in a different locale to the ISO datetime string in UTC in the default locale", function () {
     var formatter = new Backgrid.Extension.MomentFormatter({
       displayInUTC: false,
       displayLang: "zh-tw",
@@ -145,17 +145,17 @@ describe("A MomentFormatter", function () {
     expect(formatter.toRaw("週三, 29-2月-2012 05:30:00 +08:00")).toBe(moment("2012-02-29T05:30:00+08:00").utc().format());
   });
 
-  it(".toRaw() can convert a non-ISO datetime string in a timezone offset in a different locale to another non-ISO datetime string in UTC in a default locale", function () {
+  it(".toRaw() can convert a non-ISO datetime string in local time in a different locale to another non-ISO datetime string in UTC in the default locale", function () {
     var formatter = new Backgrid.Extension.MomentFormatter({
       modelFormat: "dddd, YYYY-MMM-DD HH:mm:ss",
       displayInUTC: false,
       displayLang: "zh-tw",
       displayFormat: "ddd, DD-MMM-YYYY HH:mm:ss"
     });
-    expect(formatter.toRaw("週三, 29-2月-2012 05:30:00")).toBe("Tuesday, 2012-Feb-28 21:30:00");
+    expect(formatter.toRaw("週三, 29-2月-2012 05:30:00")).toBe(moment("2012-02-29T05:30:00").utc().format("dddd, YYYY-MMM-DD HH:mm:ss"));
   });
 
-  it(".toRaw() can convert a non-ISO datetime string in a timezone offset in a different locale to another non-ISO datetime string in UTC in a different locale", function () {
+  it(".toRaw() can convert a non-ISO datetime string in local time in a different locale to another non-ISO datetime string in UTC in a different locale", function () {
     var formatter = new Backgrid.Extension.MomentFormatter({
       modelLang: "fr",
       modelFormat: "dddd, YYYY-MMM-DD HH:mm:ss",
@@ -163,7 +163,7 @@ describe("A MomentFormatter", function () {
       displayLang: "zh-tw",
       displayFormat: "ddd, DD-MMM-YYYY HH:mm:ss"
     });
-    expect(formatter.toRaw("週三, 29-2月-2012 05:30:00")).toBe("mardi, 2012-févr.-28 21:30:00");
+    expect(formatter.toRaw("週三, 29-2月-2012 05:30:00")).toBe(moment("2012-02-29T05:30:00").lang("fr").utc().format("dddd, YYYY-MMM-DD HH:mm:ss"));
   });
 
   it(".toRaw() can convert a non-ISO datetime string in a timezone offset in a different locale to another non-ISO datetime string in a timezone offset in a different locale", function () {
@@ -175,7 +175,7 @@ describe("A MomentFormatter", function () {
       displayLang: "zh-tw",
       displayFormat: "ddd, DD-MMM-YYYY HH:mm:ss Z"
     });
-    expect(formatter.toRaw("週三, 29-2月-2012 05:30:00 +08:00")).toBe("mercredi, 2012-févr.-29 05:30:00 +0800");
+    expect(formatter.toRaw("週三, 29-2月-2012 05:30:00 +08:00")).toBe(moment("2012-02-29T05:30:00").lang("fr").format("dddd, YYYY-MMM-DD HH:mm:ss ZZ"));
   });
 
   it(".toRaw() returns undefined when converting an empty string or a string of whitespaces", function () {
