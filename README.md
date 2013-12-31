@@ -11,5 +11,5 @@ Dependencies
 Usage
 ====
 
-See the [MomentCell](http://wyuenho.github.com/backgrid/#api-moment-cell) section
+See the [MomentCell](http://backgridjs.com/ref/extensions/moment-cell.html) section
 in the documentation.
