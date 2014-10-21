@@ -33,8 +33,9 @@
      @constructor
    */
   var MomentFormatter = Backgrid.Extension.MomentFormatter = function (options) {
-    _.extend(this, this.defaults, options);
-  };
+      _.extend(this, this.defaults, options);
+    },
+    useLocale = _( moment ).has("locale");
   MomentFormatter.prototype = new Backgrid.CellFormatter;
   _.extend(MomentFormatter.prototype, {
 
@@ -50,8 +51,9 @@
        @cfg {boolean} [options.modelInUTC=true] Whether the model values should
        be read/written in UTC mode or local mode.
 
-       @cfg {string} [options.modelLang=moment.lang()] The locale the model
-       values should be read/written in.
+       @cfg {string} [options.modelLang=moment.locale() moment>=2.8.0 |
+       moment.lang() moment<2.8.0] The locale the model values should be
+       read/written in.
 
        @cfg {string} [options.modelFormat=moment.defaultFormat] The format this
        moment formatter should use to read/write model values. Only meaningful if
@@ -67,8 +69,9 @@
        @cfg {boolean} [options.displayInUTC=true] Whether the display values
        should be read/written in UTC mode or local mode.
 
-       @cfg {string} [options.displayLang=moment.lang()] The locale the display
-       values should be read/written in.
+       @cfg {string} [options.displayLang=moment.locale() moment>=2.8.0 |
+       moment.lang() moment<2.8.0] The locale the display values should be
+       read/written in.
 
        @cfg {string} [options.displayFormat=moment.defaultFormat] The format
        this moment formatter should use to read/write dislay values.
@@ -77,12 +80,12 @@
       modelInUnixOffset: false,
       modelInUnixTimestamp: false,
       modelInUTC: true,
-      modelLang: moment.lang(),
+      modelLang: useLocale ? moment.locale() : moment.lang(),
       modelFormat: moment.defaultFormat,
       displayInUnixOffset: false,
       displayInUnixTimestamp: false,
       displayInUTC: true,
-      displayLang: moment.lang(),
+      displayLang: useLocale ? moment.locale() : moment.lang(),
       displayFormat: moment.defaultFormat
     },
 
@@ -106,7 +109,9 @@
 
       if (this.displayInUnixTimestamp) return m.unix();
 
-      if (this.displayLang) m.lang(this.displayLang);
+      if (this.displayLang) {
+        if (useLocale) m.locale(this.displayLang); else m.lang(this.displayLang);
+      }
 
       if (this.displayInUTC) m.utc(); else m.local();
 
@@ -134,7 +139,9 @@
 
       if (this.modelInUnixTimestamp) return m.unix();
 
-      if (this.modelLang) m.lang(this.modelLang);
+      if (this.modelLang) {
+        if (useLocale) m.locale(this.modelLang); else m.lang(this.modelLang);
+      }
 
       if (this.modelInUTC) m.utc(); else m.local();
 
