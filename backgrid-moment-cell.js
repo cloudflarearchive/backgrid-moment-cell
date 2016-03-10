@@ -34,8 +34,8 @@
    */
   var MomentFormatter = Backgrid.Extension.MomentFormatter = function (options) {
       _.extend(this, this.defaults, options);
-    },
-    useLocale = _( moment ).has("locale");
+  };
+  var useLocale = "locale" in moment && _.isFunction(moment, "locale");
   MomentFormatter.prototype = new Backgrid.CellFormatter;
   _.extend(MomentFormatter.prototype, {
 
