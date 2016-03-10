@@ -99,6 +99,7 @@
     fromRaw: function (rawData) {
       if (rawData == null) return '';
 
+      var result;
       var m = this.modelInUnixOffset ? moment(rawData) :
         this.modelInUnixTimestamp ? moment.unix(rawData) :
         this.modelInUTC ?
@@ -114,8 +115,14 @@
       }
 
       if (this.displayInUTC) m.utc(); else m.local();
+      
+      if (this.displayFormat === 'fromNow') {
+        result = m.fromNow();
+      } else {
+        result = m.format(this.displayFormat);
+      }
 
-      return m.format(this.displayFormat);
+      return result;
     },
 
     /**
