@@ -60,7 +60,7 @@ describe("A MomentFormatter", function () {
       displayLang: "zh-tw",
       displayInUTC: false
     });
-    expect(formatter.fromRaw("2012-02-29T05:30:00.100Z")).toBe(moment.utc("2012-02-29T05:30:00.100Z").local().lang("zh-tw").format("ddd, DD-MMM-YYYY HH:mm:ss ZZ"));
+    expect(formatter.fromRaw("2012-02-29T05:30:00.100Z")).toBe(moment.utc("2012-02-29T05:30:00.100Z").local().locale("zh-tw").format("ddd, DD-MMM-YYYY HH:mm:ss ZZ"));
   });
 
   it(".fromRaw() can convert a datetime string in UTC in a moment.js " +
@@ -94,7 +94,7 @@ describe("A MomentFormatter", function () {
       displayLang: "fr",
       displayFormat: "dddd, YYYY-MMM-DD HH:mm:ss ZZ"
     });
-    expect(formatter.fromRaw("週三, 29-2月-2012 05:30:00 +0800")).toBe(moment("2012-02-29T05:30:00+08:00").lang("fr").local().format("dddd, YYYY-MMM-DD HH:mm:ss ZZ"));
+    expect(formatter.fromRaw("週三, 29-2月-2012 05:30:00 +0800")).toBe(moment("2012-02-29T05:30:00+08:00").locale("fr").local().format("dddd, YYYY-MMM-DD HH:mm:ss ZZ"));
   });
 
   it(".fromRaw() returns an empty string for a null value", function () {
@@ -163,7 +163,7 @@ describe("A MomentFormatter", function () {
       displayLang: "zh-tw",
       displayFormat: "ddd, DD-MMM-YYYY HH:mm:ss"
     });
-    expect(formatter.toRaw("週三, 29-2月-2012 05:30:00")).toBe(moment("2012-02-29T05:30:00").lang("fr").utc().format("dddd, YYYY-MMM-DD HH:mm:ss"));
+    expect(formatter.toRaw("週三, 29-2月-2012 05:30:00")).toBe(moment("2012-02-29T05:30:00").locale("fr").utc().format("dddd, YYYY-MMM-DD HH:mm:ss"));
   });
 
   it(".toRaw() can convert a non-ISO datetime string in a timezone offset in a different locale to another non-ISO datetime string in a timezone offset in a different locale", function () {
@@ -175,7 +175,7 @@ describe("A MomentFormatter", function () {
       displayLang: "zh-tw",
       displayFormat: "ddd, DD-MMM-YYYY HH:mm:ss Z"
     });
-    expect(formatter.toRaw("週三, 29-2月-2012 05:30:00 +08:00")).toBe(moment("2012-02-29T05:30:00+08:00").lang("fr").format("dddd, YYYY-MMM-DD HH:mm:ss ZZ"));
+    expect(formatter.toRaw("週三, 29-2月-2012 05:30:00 +08:00")).toBe(moment("2012-02-29T05:30:00+08:00").locale("fr").format("dddd, YYYY-MMM-DD HH:mm:ss ZZ"));
   });
 
   it(".toRaw() returns undefined when converting an empty string or a string of whitespaces", function () {
@@ -205,22 +205,10 @@ describe("A MomentCell", function () {
       },
       model: book
     });
-
-    this.addMatchers({
-      toBeAnInstanceOf: function (expected) {
-        var actual = this.actual;
-        var notText = this.isNot ? " not" : "";
-        this.message = function () {
-          return "Expected " + actual + notText + " to be an instance of " + expected;
-        };
-
-        return actual instanceof expected;
-      }
-    });
   });
 
   it("uses a default MomentFormatter", function () {
-    expect(cell.formatter).toBeAnInstanceOf(Backgrid.Extension.MomentFormatter);
+    expect(cell.formatter instanceof Backgrid.Extension.MomentFormatter).toBe(true);
     expect(_.pick(cell.formatter, _.keys(cell.formatter))).toEqual(Backgrid.Extension.MomentFormatter.prototype.defaults);
   });
 
