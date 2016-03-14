@@ -38,11 +38,11 @@
     "karma-firefox-launcher": "^0.1.7",
     "karma-jasmine": "^0.3.7",
     "karma-jasmine-html-reporter": "^0.2.0",
-    "karma-safari-launcher": "^0.1.1",
-    "underscore": "^1.8.3"
+    "karma-safari-launcher": "^0.1.1"
   },
   "dependencies": {
     "backgrid": "~0.3.7",
-    "moment": "^2.12.0"
+    "moment": "^2.12.0",
+    "underscore": "^1.8.3"
   }
 }
