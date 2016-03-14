@@ -177,10 +177,16 @@
 
       var formatterDefaults = MomentFormatter.prototype.defaults;
       var formatterDefaultKeys = _.keys(formatterDefaults);
-      var instanceAttrs = _.pick(this, formatterDefaultKeys);
+      var classAttrs = _.pick(this, formatterDefaultKeys);
       var formatterOptions = _.pick(options, formatterDefaultKeys);
 
-      _.extend(this.formatter, formatterDefaults, instanceAttrs, formatterOptions);
+      // Priority of the options for the formatter, from highest to lowerest
+      // 1. MomentCell instance options
+      // 2. MomentCell class attributes
+      // 3. MomentFormatter defaults
+
+      // this.formatter will have been instantiated now
+      _.extend(this.formatter, formatterDefaults, classAttrs, formatterOptions);
 
       this.editor = this.editor.extend({
         attributes: _.extend({}, this.editor.prototype.attributes || this.editor.attributes || {}, {

@@ -212,6 +212,33 @@ describe("A MomentCell", function () {
     expect(_.pick(cell.formatter, _.keys(cell.formatter))).toEqual(Backgrid.Extension.MomentFormatter.prototype.defaults);
   });
 
+  it("will accept formatter options set on the cell class", function () {
+    cell = new (Backgrid.Extension.MomentCell.extend({
+      displayLang: 'zh_HK'
+    }))({
+      column: {
+        name: "birthday",
+        cell: "moment"
+      },
+      model: book
+    });
+
+    expect(cell.formatter.displayLang).toBe('zh_HK');
+  });
+
+  it("will accept formatter options given to the cell constructor", function () {
+    cell = new Backgrid.Extension.MomentCell({
+      column: {
+        name: "birthday",
+        cell: "moment"
+      },
+      model: book,
+      displayLang: 'zh_HK'
+    });
+
+    expect(cell.formatter.displayLang).toBe('zh_HK');
+  });
+
   it("applies a moment-cell class to the cell", function () {
     expect(cell.render().$el.hasClass("moment-cell")).toBe(true);
   });
