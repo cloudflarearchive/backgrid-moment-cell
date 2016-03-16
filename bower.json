@@ -4,7 +4,7 @@
     "backgrid-moment-cell.js",
     "backgrid-moment-cell.css"
   ],
-  "version": "0.3.5",
+  "version": "0.3.7",
   "description": "Backgrid.js datetime cell type formatted via moment.js.",
   "homepage": "https://github.com/wyuenho/backgrid-moment-cell",
   "authors": [
@@ -24,8 +24,8 @@
     "tests"
   ],
   "dependencies": {
-    "backgrid": "~0.3.0",
-    "moment": "~2.5.0",
-    "underscore": "~1.5.2"
+    "backgrid": "~0.3.7",
+    "moment": "^2.12.0",
+    "underscore": "^1.8.3"
   }
 }
