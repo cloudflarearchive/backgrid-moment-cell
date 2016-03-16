@@ -21,6 +21,10 @@
 
 }(this, function (_, Backgrid, moment) {
 
+  "use strict";
+
+  var exports = {};
+
   /**
      MomentFormatter converts bi-directionally any datetime values in any format
      supported by [moment()](http://momentjs.com/docs/#/parsing/) to any
@@ -32,7 +36,7 @@
      @extends Backgrid.CellFormatter
      @constructor
    */
-  var MomentFormatter = Backgrid.Extension.MomentFormatter = function (options) {
+  var MomentFormatter = exports.MomentFormatter = Backgrid.Extension.MomentFormatter = function (options) {
       _.extend(this, this.defaults, options);
   };
   var useLocale = "locale" in moment && _.isFunction(moment, "locale");
@@ -157,7 +161,7 @@
      @class Backgrid.Extension.MomentCell
      @extends Backgrid.Cell
    */
-  var MomentCell = Backgrid.Extension.MomentCell = Backgrid.Cell.extend({
+  var MomentCell = exports.MomentCell = Backgrid.Extension.MomentCell = Backgrid.Cell.extend({
 
     editor: Backgrid.InputCellEditor,
 
@@ -198,5 +202,7 @@
   });
 
   _.extend(MomentCell.prototype, MomentFormatter.prototype.defaults);
+
+  return exports;
 
 }));
