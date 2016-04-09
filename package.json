@@ -3,6 +3,7 @@
   "version": "0.3.8",
   "description": "Backgrid.js datetime cell type formatted via moment.js.",
   "main": "backgrid-moment-cell.js",
+  "style": "backgrid-moment-cell.css",
   "scripts": {
     "test": "karma start --single-run --browsers Chrome,Firefox"
   },
