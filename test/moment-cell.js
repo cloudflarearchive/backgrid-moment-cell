@@ -11,20 +11,20 @@ describe("A MomentFormatter", function () {
     var formatter = new Backgrid.Extension.MomentFormatter({
       modelInUnixOffset: true
     });
-    expect(formatter.fromRaw(1318781876406)).toBe('2011-10-16T16:17:56+00:00');
+    expect(formatter.fromRaw(1318781876406)).toBe('2011-10-16T16:17:56Z');
   });
 
   it(".fromRaw() can convert an UNIX timestamp to a datetime string in moment.js", function () {
     var formatter = new Backgrid.Extension.MomentFormatter({
       modelInUnixTimestamp: true
     });
-    expect(formatter.fromRaw(1318781876.721)).toBe('2011-10-16T16:17:56+00:00');
+    expect(formatter.fromRaw(1318781876.721)).toBe('2011-10-16T16:17:56Z');
   });
 
   it(".fromRaw() can convert an ISO datetime string in UTC to a datetime " +
      "string in moment.js' default format in UTC", function () {
     var formatter = new Backgrid.Extension.MomentFormatter();
-    expect(formatter.fromRaw("2012-02-29T05:30:00.100Z")).toBe("2012-02-29T05:30:00+00:00");
+    expect(formatter.fromRaw("2012-02-29T05:30:00.100Z")).toBe("2012-02-29T05:30:00Z");
   });
 
   it(".fromRaw() can convert an ISO datetime string in UTC to a datetime " +
@@ -111,21 +111,21 @@ describe("A MomentFormatter", function () {
     var formatter = new Backgrid.Extension.MomentFormatter({
       displayInUnixOffset: true
     });
-    expect(formatter.toRaw(1318781876406)).toBe('2011-10-16T16:17:56+00:00');
+    expect(formatter.toRaw(1318781876406)).toBe('2011-10-16T16:17:56Z');
   });
 
   it(".toRaw() can convert an UNIX timestamp to a datetime string in moment.js", function () {
     var formatter = new Backgrid.Extension.MomentFormatter({
       displayInUnixTimestamp: true
     });
-    expect(formatter.toRaw(1318781876.721)).toBe('2011-10-16T16:17:56+00:00');
+    expect(formatter.toRaw(1318781876.721)).toBe('2011-10-16T16:17:56Z');
   });
 
   it(".toRaw() can convert a non-ISO datetime string in UTC in the default locale to the ISO datetime string in UTC in the default locale", function () {
     var formatter = new Backgrid.Extension.MomentFormatter({
       displayFormat: "ddd, DD-MMM-YYYY HH:mm:ss"
     });
-    expect(formatter.toRaw("Wed, 29-Feb-2012 05:30:00")).toBe("2012-02-29T05:30:00+00:00");
+    expect(formatter.toRaw("Wed, 29-Feb-2012 05:30:00")).toBe("2012-02-29T05:30:00Z");
   });
 
   it(".toRaw() can convert a non-ISO datetime string in UTC in a different locale to the ISO datetime string in UTC in the default locale", function () {
@@ -133,7 +133,7 @@ describe("A MomentFormatter", function () {
       displayLang: "zh-tw",
       displayFormat: "ddd, DD-MMM-YYYY HH:mm:ss"
     });
-    expect(formatter.toRaw("週三, 29-2月-2012 05:30:00")).toBe("2012-02-29T05:30:00+00:00");
+    expect(formatter.toRaw("週三, 29-2月-2012 05:30:00")).toBe("2012-02-29T05:30:00Z");
   });
 
   it(".toRaw() can convert a non-ISO datetime string in a timezone offset in a different locale to the ISO datetime string in UTC in the default locale", function () {
@@ -195,7 +195,7 @@ describe("A MomentCell", function () {
   beforeEach(function () {
 
     book = new Book({
-      birthday: "2012-11-30T12:34:56.789+00:00"
+      birthday: "2012-11-30T12:34:56.789Z"
     });
 
     cell = new Backgrid.Extension.MomentCell({
