@@ -1,6 +1,6 @@
 {
   "name": "backgrid-moment-cell",
-  "version": "0.3.8",
+  "version": "0.3.9",
   "description": "Backgrid.js datetime cell type formatted via moment.js.",
   "main": "backgrid-moment-cell.js",
   "style": "backgrid-moment-cell.css",
