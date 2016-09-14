@@ -78,6 +78,9 @@
 
        @cfg {string} [options.displayFormat=moment.defaultFormat] The format
        this moment formatter should use to read/write dislay values.
+
+       @cfg {string} [options.displayFromNow=false] Return date format in
+       string fromNow format example: '17 seconds ago'.
      */
     defaults: {
       modelInUnixOffset: false,
@@ -89,7 +92,8 @@
       displayInUnixTimestamp: false,
       displayInUTC: true,
       displayLang: moment.locale(),
-      displayFormat: moment.defaultFormat
+      displayFormat: moment.defaultFormat,
+      displayFromNow: false
     },
 
     /**
@@ -115,6 +119,8 @@
       if (this.displayLang) m.locale(this.displayLang);
 
       if (this.displayInUTC) m.utc(); else m.local();
+
+      if (this.displayFromNow) return m.fromNow();
 
       if (this.displayFormat != moment.defaultFormat) {
         return m.format(this.displayFormat);
