@@ -39,6 +39,7 @@
   var MomentFormatter = exports.MomentFormatter = Backgrid.Extension.MomentFormatter = function (options) {
       _.extend(this, this.defaults, options);
   };
+  var useLocale = "locale" in moment && _.isFunction(moment, "locale");
   MomentFormatter.prototype = new Backgrid.CellFormatter;
   _.extend(MomentFormatter.prototype, {
 
@@ -83,12 +84,13 @@
       modelInUnixOffset: false,
       modelInUnixTimestamp: false,
       modelInUTC: true,
-      modelLang: moment.locale(),
+      modelLang: useLocale ? moment.locale() : moment.lang(),
       modelFormat: moment.defaultFormat,
       displayInUnixOffset: false,
       displayInUnixTimestamp: false,
       displayInUTC: true,
-      displayLang: moment.locale(),
+      displayInTimezone: false,
+      displayLang: useLocale ? moment.locale() : moment.lang(),
       displayFormat: moment.defaultFormat
     },
 
@@ -112,15 +114,13 @@
 
       if (this.displayInUnixTimestamp) return m.unix();
 
-      if (this.displayLang) m.locale(this.displayLang);
-
-      if (this.displayInUTC) m.utc(); else m.local();
-
-      if (this.displayFormat != moment.defaultFormat) {
-        return m.format(this.displayFormat);
+      if (this.displayLang) {
+        if (useLocale) m.locale(this.displayLang); else m.lang(this.displayLang);
       }
 
-      return m.format();
+      if (this.displayInUTC) m.utc(); else if (this.displayInTimezone) m.parseZone(); else m.local();
+
+      return m.format(this.displayFormat);
     },
 
     /**
@@ -144,15 +144,13 @@
 
       if (this.modelInUnixTimestamp) return m.unix();
 
-      if (this.modelLang) m.locale(this.modelLang);
-
-      if (this.modelInUTC) m.utc(); else m.local()
-
-      if (this.modelFormat != moment.defaultFormat) {
-        return m.format(this.modelFormat);
+      if (this.modelLang) {
+        if (useLocale) m.locale(this.modelLang); else m.lang(this.modelLang);
       }
 
-      return m.format();
+      if (this.modelInUTC) m.utc(); else m.local();
+
+      return m.format(this.modelFormat);
     }
 
   });
