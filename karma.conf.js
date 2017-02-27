@@ -5,23 +5,23 @@ module.exports = function(config) {
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
-    basePath: '',
+    basePath: "",
 
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['jasmine'],
+    frameworks: ["jasmine"],
 
 
     // list of files / patterns to load in the browser
     files: [
-      'node_modules/jquery/dist/jquery.js',
-      'node_modules/underscore/underscore.js',
-      'node_modules/backbone/backbone.js',
-      'node_modules/backgrid/lib/backgrid.js',
-      'node_modules/moment/min/moment-with-locales.js',
-      'backgrid-moment-cell.js',
-      'test/moment-cell.js'
+      "node_modules/jquery/dist/jquery.js",
+      "node_modules/underscore/underscore.js",
+      "node_modules/backbone/backbone.js",
+      "node_modules/backgrid/lib/backgrid.js",
+      "node_modules/moment/min/moment-with-locales.js",
+      "backgrid-moment-cell.js",
+      "test/moment-cell.js"
     ],
 
 
@@ -33,18 +33,18 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      'backgrid-moment-cell.js': ['coverage']
+      "backgrid-moment-cell.js": ["coverage"]
     },
 
 
     // test results reporter to use
-    // possible values: 'dots', 'progress'
+    // possible values: "dots", "progress"
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress', 'kjhtml', 'coverage'],
+    reporters: ["progress", "kjhtml", "coverage"],
 
     coverageReporter: {
-      type: 'html',
-      dir: 'test/coverage'
+      type: "html",
+      dir: "test/coverage"
     },
 
     // web server port
@@ -66,7 +66,7 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome', 'Firefox', 'Safari'],
+    browsers: ["Chrome", "Firefox", "Safari"],
 
 
     // Continuous Integration mode
@@ -78,5 +78,5 @@ module.exports = function(config) {
     concurrency: Infinity,
 
     browserNoActivityTimeout: 30000
-  })
-}
+  });
+};

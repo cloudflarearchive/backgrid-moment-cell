@@ -31,7 +31,7 @@ module.exports = function (grunt) {
 
     karma: {
       unit: {
-        configFile: 'karma.conf.js',
+        configFile: "karma.conf.js",
         singleRun: true
       }
     },
@@ -49,19 +49,19 @@ module.exports = function (grunt) {
       }
     },
 
-    recess: {
-      csslint: {
-        options: {
-          compile: true
-        },
+    csscomb: {
+      "default": {
         files: {
           "backgrid-moment-cell.css": ["backgrid-moment-cell.css"]
         }
+      }
+    },
+
+    cssnano: {
+      options: {
+        safe: true
       },
       "default": {
-        options: {
-          compress: true
-        },
         files: {
           "backgrid-moment-cell.min.css": ["backgrid-moment-cell.css"]
         }
@@ -84,10 +84,11 @@ module.exports = function (grunt) {
 
   grunt.loadNpmTasks("grunt-contrib-clean");
   grunt.loadNpmTasks("grunt-contrib-uglify");
-  grunt.loadNpmTasks("grunt-recess");
+  grunt.loadNpmTasks("grunt-csscomb");
+  grunt.loadNpmTasks("grunt-cssnano");
   grunt.loadNpmTasks("grunt-jsduck");
   grunt.loadNpmTasks("grunt-karma");
 
-  grunt.registerTask("dist", ["uglify", "recess"]);
+  grunt.registerTask("dist", ["uglify", "csscomb", "cssnano"]);
   grunt.registerTask("default", ["clean", "jsduck", "dist", "karma"]);
 };

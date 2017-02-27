@@ -68,8 +68,8 @@ Javascript
 ----------
 
 Please be aware that Backgrid.js uses 2 spaces for indentation. This project has
-a [.jshintrc](.jshintrc) file defined, which is handy if you use
-[jshint](http://www.jshint.com). In general, you should follow the
+a [.eslintrc.js](.eslintrc.js) file defined, which is handy if you use
+[eslint](http://eslint.org). In general, you should follow the
 [Google Javascript Style Guide](http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml). Backgrid.js's
 code follows this coding style extremely closely, with 2 exceptions:
 

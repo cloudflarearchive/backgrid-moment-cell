@@ -7,10 +7,10 @@
 */
 (function (root, factory) {
 
-  if (typeof define === 'function' && define.amd) {
+  if (typeof define === "function" && define.amd) {
     // AMD
     define(["underscore", "backgrid", "moment"], factory);
-  } else if (typeof exports === 'object') {
+  } else if (typeof exports === "object") {
     // CommonJS
     module.exports = factory(require("underscore"), require("backgrid"),
                              require("moment"));
@@ -35,9 +35,9 @@
      @class Backgrid.Extension.MomentFormatter
      @extends Backgrid.CellFormatter
      @constructor
-   */
+  */
   var MomentFormatter = exports.MomentFormatter = Backgrid.Extension.MomentFormatter = function (options) {
-      _.extend(this, this.defaults, options);
+    _.extend(this, this.defaults, options);
   };
   MomentFormatter.prototype = new Backgrid.CellFormatter;
   _.extend(MomentFormatter.prototype, {
@@ -78,7 +78,7 @@
 
        @cfg {string} [options.displayFormat=moment.defaultFormat] The format
        this moment formatter should use to read/write dislay values.
-     */
+    */
     defaults: {
       modelInUnixOffset: false,
       modelInUnixTimestamp: false,
@@ -98,15 +98,15 @@
        @member Backgrid.Extension.MomentFormatter
        @param {*} rawData
        @return {string}
-     */
+    */
     fromRaw: function (rawData) {
-      if (rawData == null) return '';
+      if (rawData == null) return "";
 
       var m = this.modelInUnixOffset ? moment(rawData) :
-        this.modelInUnixTimestamp ? moment.unix(rawData) :
-        this.modelInUTC ?
-        moment.utc(rawData, this.modelFormat, this.modelLang) :
-        moment(rawData, this.modelFormat, this.modelLang);
+          this.modelInUnixTimestamp ? moment.unix(rawData) :
+          this.modelInUTC ?
+          moment.utc(rawData, this.modelFormat, this.modelLang) :
+          moment(rawData, this.modelFormat, this.modelLang);
 
       if (this.displayInUnixOffset) return +m;
 
@@ -129,14 +129,14 @@
        @member Backgrid.Extension.MomentFormatter
        @param {string} formattedData
        @return {string}
-     */
+    */
     toRaw: function (formattedData) {
 
       var m = this.displayInUnixOffset ? moment(+formattedData) :
-        this.displayInUnixTimestamp ? moment.unix(+formattedData) :
-        this.displayInUTC ?
-        moment.utc(formattedData, this.displayFormat, this.displayLang) :
-        moment(formattedData, this.displayFormat, this.displayLang);
+          this.displayInUnixTimestamp ? moment.unix(+formattedData) :
+          this.displayInUTC ?
+          moment.utc(formattedData, this.displayFormat, this.displayLang) :
+          moment(formattedData, this.displayFormat, this.displayLang);
 
       if (!m || !m.isValid()) return;
 
@@ -146,7 +146,7 @@
 
       if (this.modelLang) m.locale(this.modelLang);
 
-      if (this.modelInUTC) m.utc(); else m.local()
+      if (this.modelInUTC) m.utc(); else m.local();
 
       if (this.modelFormat != moment.defaultFormat) {
         return m.format(this.modelFormat);
@@ -163,7 +163,7 @@
 
      @class Backgrid.Extension.MomentCell
      @extends Backgrid.Cell
-   */
+  */
   var MomentCell = exports.MomentCell = Backgrid.Extension.MomentCell = Backgrid.Cell.extend({
 
     editor: Backgrid.InputCellEditor,
@@ -177,7 +177,7 @@
     /**
        Initializer. Accept Backgrid.Extension.MomentFormatter.options and
        Backgrid.Cell.initialize required parameters.
-     */
+    */
     initialize: function (options) {
 
       MomentCell.__super__.initialize.apply(this, arguments);
