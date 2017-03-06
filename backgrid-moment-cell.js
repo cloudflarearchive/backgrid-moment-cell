@@ -88,6 +88,7 @@
       displayInUnixOffset: false,
       displayInUnixTimestamp: false,
       displayInUTC: true,
+      displayInTimezone: false,
       displayLang: moment.locale(),
       displayFormat: moment.defaultFormat
     },
@@ -114,7 +115,7 @@
 
       if (this.displayLang) m.locale(this.displayLang);
 
-      if (this.displayInUTC) m.utc(); else m.local();
+      if (this.displayInUTC) m.utc(); else if (this.displayInTimezone) m.parseZone(); else m.local();
 
       if (this.displayFormat != moment.defaultFormat) {
         return m.format(this.displayFormat);
