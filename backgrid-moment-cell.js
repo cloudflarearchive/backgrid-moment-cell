@@ -187,7 +187,7 @@
       var classAttrs = _.pick(this, formatterDefaultKeys);
       var formatterOptions = _.pick(options, formatterDefaultKeys);
 
-      // Priority of the options for the formatter, from highest to lowerest
+      // Priority of the options for the formatter, from highest to lowest
       // 1. MomentCell instance options
       // 2. MomentCell class attributes
       // 3. MomentFormatter defaults
